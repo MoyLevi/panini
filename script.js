@@ -1,5 +1,5 @@
 const STORAGE_KEY = "panini_wc26";
-const APP_VERSION = "1.1";
+const APP_VERSION = "1.2";
 const THEME_KEY = "panini_wc26_theme";
 
 const groups = {
