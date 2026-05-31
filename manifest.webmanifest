@@ -1,0 +1,10 @@
+{
+  "name": "Panini Tracker WC26",
+  "short_name": "Panini WC26",
+  "description": "Control local de estampas Panini World Cup 2026",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#071225",
+  "theme_color": "#0f2a55",
+  "icons": []
+}

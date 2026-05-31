@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Panini Tracker WC26</title>
+  <meta name="description" content="Control simple de estampas del álbum Panini World Cup 2026." />
+  <meta name="theme-color" content="#0f2a55" />
+
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="app-header">
+    <div>
+      <h1>⚽ Panini Tracker</h1>
+      <p>FIFA World Cup 2026 · Álbum familiar</p>
+    </div>
+
+    <button id="themeBtn" class="icon-btn" title="Cambiar tema">🌙</button>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-screen="inicio">Inicio</button>
+    <button class="tab" data-screen="album">Mi Álbum</button>
+    <button class="tab" data-screen="faltantes">Faltantes</button>
+    <button class="tab" data-screen="intercambio">Intercambio</button>
+    <button class="tab" data-screen="config">Config</button>
+  </nav>
+
+  <main>
+    <!-- INICIO -->
+    <section id="inicio" class="screen active">
+      <section class="hero-card">
+        <div class="hero-top">
+          <div>
+            <h2>Progreso general</h2>
+            <p class="muted">Control rápido de tus 980 estampas.</p>
+          </div>
+          <strong id="progressPercent" class="big-percent">0%</strong>
+        </div>
+
+        <div class="progress-row">
+          <span id="progressText">0 / 980</span>
+          <span id="missingText">Faltan 980</span>
+        </div>
+
+        <div class="progress-bar">
+          <div id="progressFill"></div>
+        </div>
+
+        <div class="stats">
+          <article>
+            <strong id="statTengo">0</strong>
+            <span>🟩 Tengo</span>
+          </article>
+          <article>
+            <strong id="statFaltan">980</strong>
+            <span>⬜ Faltan</span>
+          </article>
+          <article>
+            <strong id="statCompleteTeams">0/48</strong>
+            <span>🏆 Equipos completos</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="quick-card">
+        <h3>Marcar rápido</h3>
+        <div class="quick-search">
+          <input id="quickInput" type="text" placeholder="Ej. MEX7, FWC12, BRA20" autocomplete="off" />
+          <button id="quickToggleBtn">Cambiar</button>
+        </div>
+        <p id="quickResult" class="muted">Escribe una clave y cambia su estado sin buscarla en todo el álbum.</p>
+      </section>
+
+      <section class="grid-two">
+        <article class="panel-card">
+          <h3>Equipos más avanzados</h3>
+          <div id="topTeamsList" class="rank-list"></div>
+        </article>
+
+        <article class="panel-card">
+          <h3>Grupos</h3>
+          <p id="bestWorstGroup" class="muted"></p>
+          <div id="groupProgressList" class="group-list"></div>
+        </article>
+      </section>
+    </section>
+
+    <!-- MI ALBUM -->
+    <section id="album" class="screen">
+      <div class="toolbar">
+        <input id="searchInput" type="search" placeholder="Buscar: MEX, FWC, BRA12, Grupo C..." />
+        <select id="groupFilter">
+          <option value="todos">Todos los grupos</option>
+        </select>
+        <select id="statusFilter">
+          <option value="todos">Todas</option>
+          <option value="tengo">Tengo</option>
+          <option value="faltan">Faltan</option>
+        </select>
+      </div>
+
+      <div id="albumContainer"></div>
+    </section>
+
+    <!-- FALTANTES -->
+    <section id="faltantes" class="screen">
+      <section class="list-card">
+        <div class="list-header">
+          <div>
+            <h2>Estampas faltantes</h2>
+            <p class="muted">Lista lista para WhatsApp o para llevar al intercambio.</p>
+          </div>
+          <button id="copyMissingBtn">Copiar</button>
+        </div>
+
+        <textarea id="missingList" readonly></textarea>
+      </section>
+    </section>
+
+    <!-- INTERCAMBIO -->
+    <section id="intercambio" class="screen">
+      <section class="list-card">
+        <h2>Modo intercambio ⭐</h2>
+        <p class="muted">Pega las estampas que alguien te ofrece. La app te dirá cuáles te faltan y cuáles ya tienes.</p>
+
+        <textarea id="tradeInput" placeholder="Ejemplo:
+MEX7
+BRA12
+ARG4
+FWC8"></textarea>
+
+        <div class="trade-actions">
+          <button id="analyzeTradeBtn">Analizar</button>
+          <button id="clearTradeBtn" class="secondary">Limpiar</button>
+          <button id="copyTradeBtn" class="secondary">Copiar resultado</button>
+        </div>
+
+        <div id="tradeResult" class="trade-result"></div>
+      </section>
+    </section>
+
+    <!-- CONFIG -->
+    <section id="config" class="screen">
+      <section class="list-card">
+        <h2>Configuración</h2>
+        <p class="muted">Tus datos se guardan en este dispositivo usando localStorage.</p>
+
+        <div class="config-actions">
+          <button id="installBtn" class="secondary hidden">Instalar app</button>
+          <button id="exportBtn">Exportar respaldo</button>
+
+          <label class="import-label">
+            Importar respaldo
+            <input id="importInput" type="file" accept=".json,application/json" hidden />
+          </label>
+
+          <button id="resetBtn" class="danger">Borrar progreso</button>
+        </div>
+
+        <div class="note-box">
+          <strong>V1.1</strong>
+          <p>Sin login, sin pagos y sin nube. Primero que funcione bonito; luego le ponemos los moñitos finos.</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <span>V1.1 local · Offline básico · Hecha para no andar hojeando como detective de estampas</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
