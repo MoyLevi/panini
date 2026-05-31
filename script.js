@@ -18,7 +18,7 @@ const groups = {
 };
 
 const teamNames = {
-  MEX: "México", RSA: "Sudáfrica", KOR: "Corea República", CZE: "Chequia",
+  MEX: "México", RSA: "Sudáfrica", KOR: "Corea del Sur", CZE: "República Checa",
   CAN: "Canadá", BIH: "Bosnia y Herzegovina", QAT: "Qatar", SUI: "Suiza",
   BRA: "Brasil", MAR: "Marruecos", HAI: "Haití", SCO: "Escocia",
   USA: "Estados Unidos", PAR: "Paraguay", AUS: "Australia", TUR: "Turquía",
